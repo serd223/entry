@@ -32,17 +32,17 @@ So if you try to decrement it when it is 0, it will be set to 255 and if you try
 
 < : Decrements the stack pointer[*]
 
-add : Increments current stack cell by 1
+add : Increments current cell by 1
 
-dec : Decrements current stack cell by 1
+dec : Decrements current cell by 1
 
-print : Prints the ascii representation of the current stack cell (Program returns PRINT_ERROR if current stack cell is above 255)
+print : Prints the ascii representation of the current cell (Program returns PRINT_ERROR if current stack cell is above 255)
 
-ftext : Gets text input from user and set the current stack cell to the value of the inputted character
+ftext : Gets text input from user and set the current cell to the value of the inputted character
 
-if : Skips next instruction if the value of the current stack cell is above 0
+if : Skips next instruction if the current cell is above 0
 
-nfi : Skips next instruction if the value of the current stack cell less than or equal to 0
+nfi : Skips next instruction if the current cell is less than or equal to 0
 
 rev : Reverses the order of execution
 [*] 'rev' also reverses the roles of '>' and '<', so if you use 'rev' to reverse the order of execution, '>' will be decrementing the stack pointer
