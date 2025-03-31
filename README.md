@@ -36,9 +36,9 @@ add : Increments current cell by 1
 
 dec : Decrements current cell by 1
 
-print : Prints the ascii representation of the current cell (Program returns PRINT_ERROR if current stack cell is above 255)
+print : Prints the ascii representation of the current cell (Program returns PRINT_ERROR if current cell is above 255)
 
-input: Gets text input from user and set the current cell to the value of the inputted character
+input: Gets text input from user and sets the current cell to the value of the inputted character
 
 if : Skips next instruction if the current cell is above 0
 
