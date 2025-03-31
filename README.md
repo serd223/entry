@@ -7,6 +7,12 @@ The implementation is inside the [entry.h](https://github.com/serd223/entry/blob
 
 For a working example, see [example.c](https://github.com/serd223/entry/blob/master/example.c).
 
+## Quick Start
+```console
+  $ make
+  $ ./example
+```
+
 ## Overview
 
 Just like Brainfuck, `Entry` also has a stack/array of cells and a stack pointer/cursor that you can move around to select different cells.
@@ -41,10 +47,4 @@ nfi : Skips next instruction if the value of the current stack cell less than or
 rev : Reverses the order of execution
 [*] 'rev' also reverses the roles of '>' and '<', so if you use 'rev' to reverse the order of execution, '>' will be decrementing the stack pointer
 instead of incrementing it. The same also applies to '<'.
-```
-
-## Quick Start
-```console
-  $ make
-  $ ./example
 ```
