@@ -16,19 +16,10 @@ int main(void) {
         "<<<print" // Print newline
     ;
     switch (go(code)) {
-    case WHEREISTHEHOLE:
-        printf("[RUNTIME ERROR] WHEREISTHEHOLE\n");
+    case PRINT_ERROR:
+        printf("[ERROR] PRINT_ERROR\n");
         break;
-    case TODO:
-        printf("[RUNTIME ERROR] TODO\n");
-        break;
-    case WTF:
-        printf("[RUNTIME ERROR] WTF\n");
-        break;
-    case HELLNAH:
-        printf("[RUNTIME ERROR] HELLNAH\n");
-        break;
-    case YUMMY:
+    case OK:
         break;
     default:
         abort();

@@ -8,31 +8,28 @@
 #include <stdio.h>
 
 typedef struct {
-    int32_t sandwich[256];
-    size_t ps; // pizza slicer type shi
+    int32_t stack[256];
+    size_t sptr;
     bool direction;
     bool skip;
 } Entry;
 
 typedef enum {
-    WHEREISTHEHOLE, // File not found
-    TODO, // Illegal instruction
-    WTF, // Print error
-    HELLNAH, // Segmentation fault
-    YUMMY // OK
-} HEADACHE;
+    PRINT_ERROR, // Current cell is above 255
+    OK // OK
+} EntryError;
 
-HEADACHE go(char* fs);
+EntryError go(char* fs);
 
 #ifdef ENTRY_IMPLEMENTATION
 
-#define __SKIP \
-if (entry.skip) {\
+#define ___SKIP        \
+if (entry.skip) {      \
     entry.skip = false;\
-} else\
+} else                 \
 
 // code is assumed to be null-terminated
-HEADACHE go(char* code) {
+EntryError go(char* code) {
     Entry entry = {0};
     while (code && *code) {
         char buffer[6] = {0};
@@ -46,24 +43,24 @@ HEADACHE go(char* code) {
             if (i == 0) {
                 // > and <
                 if (buffer[0] == '>') {
-                    __SKIP {
+                    ___SKIP {
                         if (!entry.direction) {
-                            entry.ps++;
-                            if (entry.ps >= 256) entry.ps = 0;
+                            entry.sptr++;
+                            if (entry.sptr >= 256) entry.sptr = 0;
                         } else {
-                            if (entry.ps == 0) entry.ps = 256;
-                            entry.ps--;
+                            if (entry.sptr == 0) entry.sptr = 256;
+                            entry.sptr--;
                         }
                     }
                     break;
                 } else if (buffer[0] == '<') {
-                    __SKIP {
+                    ___SKIP {
                         if (entry.direction) {
-                            entry.ps++;
-                            if (entry.ps >= 256) entry.ps = 0;
+                            entry.sptr++;
+                            if (entry.sptr >= 256) entry.sptr = 0;
                         } else {
-                            if (entry.ps == 0) entry.ps = 256;
-                            entry.ps--;
+                            if (entry.sptr == 0) entry.sptr = 256;
+                            entry.sptr--;
                         }
                     }
                     break;
@@ -71,52 +68,52 @@ HEADACHE go(char* code) {
             } else if (i == 1) {
                 // if
                 if (!strcmp(buffer, "if")) {
-                    __SKIP {
-                        entry.skip = (entry.sandwich[entry.ps] > 0);
+                    ___SKIP {
+                        entry.skip = (entry.stack[entry.sptr] > 0);
                     }
                     break;
                 }
             } else if (i == 2) {
                 // add, dec and rev
                 if (!strcmp(buffer, "add")) {
-                    __SKIP {
-                        entry.sandwich[entry.ps]++;
+                    ___SKIP {
+                        entry.stack[entry.sptr]++;
                     }
                     break;
                     
                 } else if (!strcmp(buffer, "dec")) {
-                    __SKIP {
-                        entry.sandwich[entry.ps]--;
+                    ___SKIP {
+                        entry.stack[entry.sptr]--;
                     }
                     break;
                     
                 } else if(!strcmp(buffer, "rev")) {
-                    __SKIP {
+                    ___SKIP {
                         entry.direction = !entry.direction;
                     }
                     break;
                     
                 } else if(!strcmp(buffer, "nfi")) {
-                    __SKIP {
-                        entry.skip = (entry.sandwich[entry.ps] <= 0);
+                    ___SKIP {
+                        entry.skip = (entry.stack[entry.sptr] <= 0);
                     }
                     break;
                 }
             } else if (i == 4) {
                 // print and ftext
                 if (!strcmp(buffer, "print")) {
-                    __SKIP {
-                        int32_t i = entry.sandwich[entry.ps];
+                    ___SKIP {
+                        int32_t i = entry.stack[entry.sptr];
                         if (i >= 256) {
-                            return WTF;
+                            return PRINT_ERROR;
                         }
                         printf("%c", (char)i);
                     }
                     break;
                     
                 } else if (!strcmp(buffer, "ftext")) {
-                    __SKIP {
-                        entry.sandwich[entry.ps] = fgetc(stdin);
+                    ___SKIP {
+                        entry.stack[entry.sptr] = fgetc(stdin);
                     }
                     break;
                 }
@@ -129,7 +126,7 @@ HEADACHE go(char* code) {
         }
     }
 
-    return YUMMY;    
+    return OK;    
 }
 #endif // ENTRY_IMPLEMENTATION
 
