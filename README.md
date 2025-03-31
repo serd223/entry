@@ -1,26 +1,47 @@
 # Entry Programming Language
-`Entry` is a quirky, freaky, based and potentially Turing-complete interpreted programming language. Perchance.
+`Entry` is a quirky and potentially Turing-complete interpreted joke programming language. Perchance.
 
-## Language Reference
+This language is *heavily* inspired by [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck).
 
-\> = move stack pointer to the right (goes back to 0 if above 255)
+The implementation is inside the [entry.h](https://github.com/serd223/entry/blob/master/entry.h) file which is an stb style single-header file library.
 
-\< = move stack pointer to the left (goes up to 255 if less than 0)
+For a working example, see [example.c](https://github.com/serd223/entry/blob/master/example.c).
 
-add = increment current stack cell by 1
+## Overview
 
-dec = decrement current stack cell by 1
+Just like Brainfuck, `Entry` also has a stack/array of cells and a stack pointer/cursor that you can move around to select different cells.
 
-print = print the ascii representation of the current stack cell (returns WTF HEADACHE if current stack cell is above 255)
+A cell in `Entry` is a 32 bit signed integer.
 
-ftext = get text input from user and set the current stack cell to the value of the inputted character
+The stack consists of 256 cells and the stack pointer will wrap around if you try to make it go out of bounds.
+So if you try to decrement it when it is 0, it will be set to 255 and if you try to increment it when it is 255, it will be set to 0.
 
-if = skip next instruction if the value of the current stack cell is above 0
+## Keywords
+`Entry` consists of a handful of keywords. Here, we can see the main difference between `Entry` and Brainfuck:
 
-nfi = skip next instruction if the value of the current stack cell is 0
+`Entry` doesn't have a built-in looping mechanism. Instead, it offers basic conditional execution and the ability to reverse the order of execution which allows programs to imitate looping behaviour.
 
-rev = reverse the order of execution
+```
+> : Increments the stack pointer[*]
 
+< : Decrements the stack pointer[*]
+
+add : Increments current stack cell by 1
+
+dec : Decrements current stack cell by 1
+
+print : Prints the ascii representation of the current stack cell (Program returns PRINT_ERROR if current stack cell is above 255)
+
+ftext : Gets text input from user and set the current stack cell to the value of the inputted character
+
+if : Skips next instruction if the value of the current stack cell is above 0
+
+nfi : Skips next instruction if the value of the current stack cell less than or equal to 0
+
+rev : Reverses the order of execution
+[*] 'rev' also reverses the roles of '>' and '<', so if you use 'rev' to reverse the order of execution, '>' will be decrementing the stack pointer
+instead of incrementing it. The same also applies to '<'.
+```
 
 ## Quick Start
 ```console
