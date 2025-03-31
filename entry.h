@@ -34,7 +34,8 @@ typedef enum {
     WHEREISTHEHOLE, // File not found
     TODO, // Illegal instruction
     WTF, // Print error
-    HELLNAH // Segmentation fault
+    HELLNAH, // Segmentation fault
+    YUMMY // OK
 } HEADACHE;
 
 HEADACHE go(char* fs);
@@ -129,7 +130,7 @@ HEADACHE go(char* fs) {
         }
     }
 
-    return TODO;    
+    return YUMMY;    
 }
 #endif // ENTRY_IMPLEMENTATION
 
