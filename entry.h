@@ -74,7 +74,7 @@ EntryError go(char* code) {
                     break;
                 }
             } else if (i == 2) {
-                // add, dec and rev
+                // add, dec, rev and nfi
                 if (!strcmp(buffer, "add")) {
                     ___SKIP {
                         entry.stack[entry.sptr]++;
@@ -100,7 +100,7 @@ EntryError go(char* code) {
                     break;
                 }
             } else if (i == 4) {
-                // print and ftext
+                // print and input
                 if (!strcmp(buffer, "print")) {
                     ___SKIP {
                         int32_t i = entry.stack[entry.sptr];
@@ -111,7 +111,7 @@ EntryError go(char* code) {
                     }
                     break;
                     
-                } else if (!strcmp(buffer, "ftext")) {
+                } else if (!strcmp(buffer, "input")) {
                     ___SKIP {
                         entry.stack[entry.sptr] = fgetc(stdin);
                     }

@@ -6,7 +6,7 @@
 
 int main(void) {
     char* code =
-        "ftext print" // Set current cell to user input and echo it
+        "input print" // Set current cell to user input and echo it
         "<add add add add add add add add add add print>" // Print newline
         "if rev dec nfi rev" // Decrement current cell until it is <= zero
         ">" // Switch to new 0 cell
