@@ -1,4 +1,4 @@
 CC = clang
 
-example:
+example: example.c entry.h
 	$(CC) example.c -o example
