@@ -3,8 +3,8 @@
 
 ## Language Reference
 
-> = move stack pointer to the right (goes back to 0 if above 255)
-< = move stack pointer to the left (goes up to 255 if less than 0)
+\> = move stack pointer to the right (goes back to 0 if above 255)
+\< = move stack pointer to the left (goes up to 255 if less than 0)
 add = increment current stack cell by 1
 dec = decrement current stack cell by 1
 print = print the ascii representation of the current stack cell (returns WTF HEADACHE if current stack cell is above 255)
