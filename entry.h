@@ -19,7 +19,7 @@ typedef enum {
     OK // OK
 } EntryError;
 
-EntryError go(char* fs);
+EntryError go(char* code);
 
 #ifdef ENTRY_IMPLEMENTATION
 
@@ -31,7 +31,8 @@ if (entry.skip) {      \
 // code is assumed to be null-terminated
 EntryError go(char* code) {
     Entry entry = {0};
-    while (code && *code) {
+    char* begin = code;
+    while (code && code >= begin && *code) {
         char buffer[6] = {0};
         for (int i = 0; i < 5; ++i) {
             char c = *(code + i);
