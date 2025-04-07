@@ -48,3 +48,8 @@ rev : Reverses the order of execution
 [*] 'rev' also reverses the roles of '>' and '<', so if you use 'rev' to reverse the order of execution, '>' will be decrementing the stack pointer
 instead of incrementing it. The same also applies to '<'.
 ```
+
+## Other Implementations
+Here are some alternative implementations of `Entry`:
+ - [vlang-entry](https://github.com/MrEAZL223/vlang-entry): `Entry` implementation written in [V](https://vlang.io/).
+ - [entry_haskell](https://github.com/serd223/entry_haskell): `Entry` implemtation written in [Haskell](https://www.haskell.org/).
